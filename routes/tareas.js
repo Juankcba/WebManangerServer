@@ -11,7 +11,8 @@ router.post('/',
     auth,
     [
         check('nombre','El Nombre es obligatorio').not().isEmpty(),
-        check('proyecto','La Sala es obligatoria').not().isEmpty()
+        check('proyecto','La Sala es obligatoria').not().isEmpty(),
+	check('ip','La direccion de Ip es obligatoria').not().isEmpty()
     ],
 
     tareaController.crearTarea

@@ -61,7 +61,7 @@ exports.obtenerTareas = async (req,res)=>{
 //actualizar tarea
 exports.actualizarTarea = async (req,res) =>{
     try {
-        const {proyecto,nombre,estado} = req.body;
+        const {proyecto,nombre,ip,estado,vol,mic} = req.body;
    
     //si la tarea existe 
     let tarea = await Tarea.findById(req.params.id);
@@ -81,14 +81,16 @@ exports.actualizarTarea = async (req,res) =>{
     const nuevaTarea = {};
     
         nuevaTarea.nombre = nombre;
-    
-   
+        nuevaTarea.ip = ip;
         nuevaTarea.estado = estado;
+        nuevaTarea.vol = vol;
+        nuevaTarea.mic = mic; 
     
 
     //guardar la tarea
     tarea = await Tarea.findOneAndUpdate ({_id: req.params.id},nuevaTarea,{new:true});
     res.json({tarea});
+    
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error ');
